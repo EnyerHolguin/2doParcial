@@ -27,6 +27,7 @@ namespace SegParcial
         {
             InitializeComponent();
             this.DataContext = llamada;
+            LlamadaIdtextblock.Text = "0";
         }
         public void reCargar()
         {
@@ -39,14 +40,19 @@ namespace SegParcial
             Despcripciontextblock.Text = string.Empty;
             Problemtextblock.Text = string.Empty;
             Soluciotextblock.Text = string.Empty;
-
+            
         }
         private bool Validar()
         {
             bool paso = true;
 
             if (string.IsNullOrWhiteSpace(LlamadaIdtextblock.Text))
+            {
                 paso = false;
+                MessageBox.Show("EL Campo llamadaID No debe Estar Vacío");
+                LlamadaIdtextblock.Focus();
+            }
+               
             else
             {
                 try
@@ -56,6 +62,8 @@ namespace SegParcial
                 catch (FormatException)
                 {
                     paso = false;
+                    MessageBox.Show("Campo LlamadaId Invalido");
+                    LlamadaIdtextblock.Focus();
 
                 }
 
