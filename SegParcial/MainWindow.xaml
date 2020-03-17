@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="600" Width="750">
 
-    <Grid >
+    <Grid Background="#FFDCC5C5" >
 
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="100"/>
@@ -21,43 +21,102 @@
             <RowDefinition Height="auto" />
             <RowDefinition Height="auto" />
             <RowDefinition Height="auto" />
-            <RowDefinition Height="auto" MinHeight="500" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" MinHeight="100" />
             <RowDefinition />
         </Grid.RowDefinitions>
 
-        <StackPanel Grid.Row="5" Grid.Column="1" Margin="0,0,6,0">
-            <Button  x:Name="GuardarButton" Content="Guargar" FontSize="16" Width="100">
+        <StackPanel Grid.Row="9" Grid.Column="1" Margin="0,0,6,0">
+            <Button  x:Name="GuardarButton" Content="Guargar" FontSize="16" Width="100" Click="GuardarButton_Click">
                 <Button.Background>
                     <ImageBrush Stretch="Uniform" AlignmentX="Left" ImageSource="/Resources/guardar.png"/>
                 </Button.Background>
             </Button>
         </StackPanel>
-        
-        <StackPanel Grid.Row="5" Grid.Column="0" Margin="0,0,5,0">
-            <Button x:Name="NuevobButton" Content="Nuevo" FontSize="16" Width="100">
+
+        <StackPanel Grid.Row="9" Grid.Column="0" Margin="0,0,5,0">
+            <Button x:Name="NuevobButton" Content="Nuevo" FontSize="16" Width="100" Click="NuevobButton_Click">
                 <Button.Background>
-                    <ImageBrush ImageSource="/Resources/new.jpg" Stretch="Uniform"/>
+                    <ImageBrush ImageSource="/Resources/new.jpg" AlignmentX="Left" Stretch="Uniform"/>
                 </Button.Background>
             </Button>
         </StackPanel>
-        
-        <StackPanel Grid.Row="5" Grid.Column="2" Margin="0,0,5,0">
-            <Button x:Name="EliminarButton" Content=" Eliminar" FontSize="16" Width="100">
+
+        <StackPanel Grid.Row="8" Grid.Column="1" Margin="0,0,5,0">
+            <Button x:Name="RemoverButton" Content="    Remover" FontSize="16" Width="100" Click="RemoverButton_Click" >
+                <Button.Background>
+                    <ImageBrush ImageSource="/Resources/Remover.png" AlignmentX="Left" Stretch="Uniform"/>
+                </Button.Background>
+
+            </Button>
+        </StackPanel>
+        <StackPanel Grid.Row="9" Grid.Column="2" Margin="0,0,5,0">
+            <Button x:Name="EliminarButton" Content=" Eliminar" FontSize="16" Width="100" Click="EliminarButton_Click">
                 <Button.Background>
                     <ImageBrush ImageSource="/Resources/eliminar.jpg" AlignmentX="Left" Stretch="Uniform"/>
                 </Button.Background>
             </Button>
         </StackPanel>
 
-        <StackPanel Grid.Row="1" Grid.Column="3" Margin="0,0,5,0">
-            <Button x:Name="BuscarButton" Content="Buscar" FontSize="16" Width="100">
+        <StackPanel Grid.Row="6" Grid.Column="2" Margin="0,0,5,0">
+            <Button x:Name="AgregaButton" Content=" Agregar" FontSize="16" Width="100" Click="AgregaButton_Click" >
                 <Button.Background>
-                    <ImageBrush ImageSource="/Resources/Buscar.png" Stretch="Uniform"/>
+                    <ImageBrush ImageSource="/Resources/mas.png" AlignmentX="Left" Stretch="Uniform"/>
+                </Button.Background>
+
+            </Button>
+        </StackPanel>
+
+        <StackPanel Grid.Row="1" Grid.Column="3" Margin="0,0,5,0">
+            <Button x:Name="BuscarButton" Content="Buscar" FontSize="16" Width="100" Click="BuscarButton_Click">
+                <Button.Background>
+                    <ImageBrush ImageSource="/Resources/Buscar.png"  AlignmentX="Left" Stretch="Uniform"/>
                 </Button.Background>
             </Button>
         </StackPanel>
 
+        <StackPanel Grid.Row="3" Grid.Column="0" Margin="0,0,5,0">
+            <Label Content="LlamadaId" FontSize="15"/>
+        </StackPanel>
 
+        <StackPanel Grid.Row="4" Grid.Column="0" Margin="0,0,5,0">
+            <Label Content="Descripcion" FontSize="15"/>
+        </StackPanel>
+
+        <StackPanel Grid.Row="5" Grid.Column="0" Margin="0,0,5,0">
+            <Label Content="Problema" FontSize="15"/>
+        </StackPanel>
+
+        <StackPanel Grid.Row="6" Grid.Column="0" Margin="0,0,5,0">
+            <Label Content="Solicuion" FontSize="15"/>
+        </StackPanel>
+
+        <StackPanel Grid.Row="3" Grid.Column="1" Margin="0,0,5,0">
+            <TextBlock x:Name="LlamadaIdtextblock" Height="30" Background="#FFFDFBFB">
+            </TextBlock>
+        </StackPanel>
+
+        <StackPanel Grid.Row="4" Grid.Column="1" Margin="0,0,5,0">
+            <TextBlock x:Name="Despcripciontextblock" Height="30" Background="#FFF9F5F5">
+            </TextBlock>
+        </StackPanel>
+
+        <StackPanel Grid.Row="5" Grid.Column="1" Margin="0,0,5,0">
+            <TextBlock x:Name="Problemtextblock" Height="30" Background="#FFF9F3F3">
+            </TextBlock>
+        </StackPanel>
+
+        <StackPanel Grid.Row="6" Grid.Column="1" Margin="0,0,5,0">
+            <TextBlock x:Name="Soluciotextblock" Height="30" Background="#FFF7F5F5">
+            </TextBlock>
+        </StackPanel>
+
+        <StackPanel Grid.Row="7" Grid.Column="1" Margin="5,5,12,0">
+            <DataGrid x:Name="LlamadaGrid" Height="202"/>
+        </StackPanel>
 
 
 

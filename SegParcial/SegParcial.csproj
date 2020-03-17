@@ -3,6 +3,7 @@
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
     <TargetFramework>netcoreapp3.1</TargetFramework>
+    <StartWorkingDirectory>$(MSBuildProjectDirectory)</StartWorkingDirectory>
     <UseWPF>true</UseWPF>
   </PropertyGroup>
 
@@ -16,15 +17,13 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="BLL\" />
-    <Folder Include="Entidades\" />
-    <Folder Include="DAL\" />
     <Folder Include="UI\Consultas\" />
     <Folder Include="UI\Reportes\" />
     <Folder Include="UI\Registros\" />
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.1.2" />
     <PackageReference Include="Microsoft.EntityFrameWorkCore.SqLite" Version="3.1.2" />
     <PackageReference Include="Microsoft.EntityFrameWorkCore.Tools" Version="3.1.2">
       <PrivateAssets>all</PrivateAssets>
