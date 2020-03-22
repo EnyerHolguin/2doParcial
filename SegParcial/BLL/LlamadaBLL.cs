@@ -13,14 +13,15 @@ namespace SegParcial.BLL
     {
         public static bool Guargar(Llamadas llamada)
         {
-            Contexto db = new Contexto();
             bool paso = false;
+            Contexto db = new Contexto();
             try
             {
                 if (db.Llamadas.Add(llamada) != null)
                     paso = db.SaveChanges() > 0;
             }
-            catch(Exception){
+            catch(Exception)
+            {
                 throw;
             }
             finally
@@ -33,12 +34,17 @@ namespace SegParcial.BLL
         }
         public static bool Modificar(Llamadas llamada)
         {
-            Contexto db = new Contexto();
             bool paso = false;
+            Contexto db = new Contexto();
             try
             {
+                db.Database.ExecuteSqlRaw($"Delete FROM LlamadaDetalle Where LlamadaId = {llamada.Llamadaid}");
+               foreach (var item in llamada.Telefono)
+                {
+                   db.Entry(item).State = EntityState.Added;
+                }
                 db.Entry(llamada).State = EntityState.Modified;
-                paso = db.SaveChanges() > 0;
+                paso = (db.SaveChanges() > 0);
 
             }
             catch (Exception)
@@ -54,8 +60,8 @@ namespace SegParcial.BLL
         }
         public static bool Eliminar(int id)
         {
-            Contexto db = new Contexto();
             bool paso = false;
+            Contexto db = new Contexto();
             try
             {
                 var eliminar = LlamadaBLL.Buscar(id);
@@ -76,8 +82,8 @@ namespace SegParcial.BLL
         }
         public static Llamadas Buscar(int id)
         {
-            Contexto db = new Contexto();
             Llamadas llamada = new Llamadas();
+            Contexto db = new Contexto();
             try
             {
                 llamada = db.Llamadas.Find(id);
@@ -95,8 +101,8 @@ namespace SegParcial.BLL
             return llamada;
         }
        
-
-    }
+       
+      }
 
     }
 

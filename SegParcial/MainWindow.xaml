@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SegParcial"
+        xmlns:src="clr-namespace:SegParcial.Validaciones"
         mc:Ignorable="d"
         Title="MainWindow" Height="600" Width="750">
 
@@ -66,7 +67,6 @@
                 <Button.Background>
                     <ImageBrush ImageSource="/Resources/mas.png" AlignmentX="Left" Stretch="Uniform"/>
                 </Button.Background>
-
             </Button>
         </StackPanel>
 
@@ -95,23 +95,45 @@
         </StackPanel>
 
         <StackPanel Grid.Row="3" Grid.Column="1" Margin="0,0,5,0">
-            <TextBox  x:Name="LlamadaIdtextblock" Height="30" Background="#FFFDFBFB"/>
+            <TextBox  x:Name="LlamadaIdtextblock" Height="30" Background="#FFFDFBFB">
+                <TextBox.Text>
+                    <Binding  Path="LlamadaId" UpdateSourceTrigger="PropertyChanged" Mode="TwoWay">
+                        
+                    </Binding>
+                 </TextBox.Text>
+            </TextBox>
         </StackPanel>
 
-        <StackPanel Grid.Row="4" Grid.Column="1" >
-            <TextBox x:Name="Despcripciontextblock" Height="30" Background="#FFF9F5F5"/>
+        <StackPanel Grid.Row="4" Grid.Column="1" Margin="0,0,5,0">
+            <TextBox x:Name="Despcripciontextblock" Height="30" Background="#FFF9F5F5" Width="396"/>
         </StackPanel>
 
         <StackPanel Grid.Row="5" Grid.Column="1" Margin="0,0,5,0">
-            <TextBox x:Name="Problemtextblock" Height="30" Background="#FFF9F3F3"/>
+            <TextBox x:Name="Problemtextblock" Height="30" Background="#FFF9F3F3">
+                <TextBox.Text>
+                    <Binding Path="Problema" UpdateSourceTrigger="PropertyChanged" Mode="TwoWay">
+                        
+                    </Binding>
+                </TextBox.Text>
+            </TextBox>
         </StackPanel>
 
         <StackPanel Grid.Row="6" Grid.Column="1" Margin="0,0,5,0">
-            <TextBox x:Name="Soluciotextblock" Height="30" Background="#FFF7F5F5"/>
+            <TextBox x:Name="Soluciotextblock" Height="30" Background="#FFF7F5F5">
+                <TextBox.Text>
+                    <Binding Path="Solucion" UpdateSourceTrigger="PropertyChanged" Mode="TwoWay">
+                    </Binding>
+                </TextBox.Text>
+            </TextBox>
         </StackPanel>
 
         <StackPanel Grid.Row="7" Grid.Column="1" Margin="5,5,12,0">
-            <DataGrid x:Name="LlamadaGrid" Height="202"/>
+            <DataGrid x:Name="LlamadaGrid" Height="202">
+                <DataGrid.ItemsSource>
+                    <Binding Path="LlamadasDetalle"  Mode="TwoWay">
+                    </Binding>
+                </DataGrid.ItemsSource>
+            </DataGrid>
         </StackPanel>
 
 

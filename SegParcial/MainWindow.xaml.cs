@@ -40,7 +40,9 @@ namespace SegParcial
             Despcripciontextblock.Text = string.Empty;
             Problemtextblock.Text = string.Empty;
             Soluciotextblock.Text = string.Empty;
-            
+            LlamadaGrid.ItemsSource = new List<LlamadasDetalles>();
+            reCargar();
+
         }
         private bool Validar()
         {
@@ -52,7 +54,7 @@ namespace SegParcial
                 MessageBox.Show("EL Campo llamadaID No debe Estar Vacío");
                 LlamadaIdtextblock.Focus();
             }
-               
+
             else
             {
                 try
@@ -86,7 +88,7 @@ namespace SegParcial
 
         private void BuscarButton_Click(object sender, RoutedEventArgs e)
         {
-            Llamadas LlamadaAnterior = LlamadaBLL.Buscar(llamada.Llamadaid);
+            Llamadas LlamadaAnterior = LlamadaBLL.Buscar(Convert.ToInt32(LlamadaIdtextblock.Text));
 
             if (LlamadaAnterior != null)
             {
@@ -95,6 +97,8 @@ namespace SegParcial
             }
             else
             {
+
+                Limpiar();
                 MessageBox.Show("Persona no encontrada");
             }
 
@@ -102,10 +106,10 @@ namespace SegParcial
 
         private void EliminarButton_Click(object sender, RoutedEventArgs e)
         {
-            if (LlamadaBLL.Eliminar(llamada.Llamadaid))
+            if (LlamadaBLL.Eliminar(Convert.ToInt32(LlamadaIdtextblock.Text)))
             {
-                MessageBox.Show("Eliminado");
                 Limpiar();
+                MessageBox.Show("Eliminado");
             }
             else
             {
@@ -116,19 +120,24 @@ namespace SegParcial
         private void GuardarButton_Click(object sender, RoutedEventArgs e)
         {
             bool paso = false;
+            if (!Validar())
+                return;
 
-            if (llamada.Llamadaid == 0)
+            if (LlamadaIdtextblock.Text == "0")
             {
                 paso = LlamadaBLL.Guargar(llamada);
             }
             else
             {
                 if (existeEnLaBaseDeDatos())
-                    paso = LlamadaBLL.Modificar(llamada);
+                {
+
+                    MessageBox.Show("No se puede modificar no existe", "Fallo", MessageBoxButton.OK, MessageBoxImage.Error);
+                    return;
+                }
                 else
                 {
-                    MessageBox.Show("No se puede modificar no existe");
-                    return;
+                    paso = LlamadaBLL.Modificar(llamada);
                 }
             }
 
@@ -138,9 +147,8 @@ namespace SegParcial
                 MessageBox.Show("Guardado");
             }
             else
-            {
-                MessageBox.Show("No se pudo guardar");
-            }
+                MessageBox.Show("No se Pudo Guardar porque debe de haber agregado una llamada");
+
         }
         private bool existeEnLaBaseDeDatos()
         {
@@ -151,7 +159,7 @@ namespace SegParcial
 
         private void RemoverButton_Click(object sender, RoutedEventArgs e)
         {
-           if (LlamadaGrid.Items.Count > 1 && LlamadaGrid.SelectedIndex < LlamadaGrid.Items.Count - 1)
+            if (LlamadaGrid.Items.Count > 1 && LlamadaGrid.SelectedIndex < LlamadaGrid.Items.Count - 1)
             {
                 llamada.Telefono.RemoveAt(LlamadaGrid.SelectedIndex);
                 reCargar();
@@ -159,19 +167,49 @@ namespace SegParcial
 
 
         }
-        private void AgregaButton_Click(object sender, RoutedEventArgs e)
+        private bool ValidarAgregar()
         {
-            llamada.Telefono.Add(new LlamadasDetalles(Soluciotextblock.Text, Problemtextblock.Text));
+            bool paso = true;
+            if (string.IsNullOrWhiteSpace(Problemtextblock.Text))
+                paso = false;
+
+            if (string.IsNullOrWhiteSpace(Soluciotextblock.Text))
+                paso = false;
+
+            if (paso == false)
+                MessageBox.Show("Debes de Agregar un Problema y su Solucion al detalle");
+
+            return paso;
+        }
+       private void AgregaButton_Click(object sender, RoutedEventArgs e)
+        {
+            var listado = new List<LlamadasDetalles>();
+            if (ValidarAgregar())
+                return;
+
+            llamada.Telefono.Add(new LlamadasDetalles
+
+            (
+            llamada.Llamadaid,
+            Problemtextblock.Text,
+            Soluciotextblock.Text
+            )
+            );
 
             reCargar();
-
-            Soluciotextblock.Focus();
+            Problemtextblock.Clear();
+            Soluciotextblock.Clear();
             Problemtextblock.Focus();
+
+            LlamadaGrid.ItemsSource= null;
+            LlamadaGrid.ItemsSource = listado;
         }
 
         private void NuevobButton_Click(object sender, RoutedEventArgs e)
         {
             Limpiar();
         }
-    }
+
+     
+    } 
 }

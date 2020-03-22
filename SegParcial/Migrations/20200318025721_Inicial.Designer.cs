@@ -9,7 +9,7 @@ using SegParcial.DAL;
 namespace SegParcial.Migrations
 {
     [DbContext(typeof(Contexto))]
-    [Migration("20200317123744_Inicial")]
+    [Migration("20200318025721_Inicial")]
     partial class Inicial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

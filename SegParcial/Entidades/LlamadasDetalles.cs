@@ -19,9 +19,9 @@ namespace SegParcial.Entidades
             Solucion = string.Empty;
         }
 
-        public LlamadasDetalles( string problema, string solucion)
+        public LlamadasDetalles( int idDetalle, string problema, string solucion)
         {
-            IdDetalle = 0;
+            IdDetalle = idDetalle;
             Problema = problema;
             Solucion = solucion;
         }
