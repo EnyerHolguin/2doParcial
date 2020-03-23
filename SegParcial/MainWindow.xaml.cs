@@ -36,10 +36,11 @@ namespace SegParcial
         }
         private void Limpiar()
         {
-            LlamadaIdtextblock.Text = "0";
-            Despcripciontextblock.Text = string.Empty;
-            Problemtextblock.Text = string.Empty;
-            Soluciotextblock.Text = string.Empty;
+            /* LlamadaIdtextblock.Text = "0";
+             Despcripciontextblock.Text = string.Empty;
+             Problemtextblock.Text = string.Empty;
+             Soluciotextblock.Text = string.Empty;j*/
+            llamada = new Llamadas();
             LlamadaGrid.ItemsSource = new List<LlamadasDetalles>();
             reCargar();
 
@@ -72,13 +73,22 @@ namespace SegParcial
             }
 
             if (string.IsNullOrWhiteSpace(Despcripciontextblock.Text))
+            {
                 paso = false;
+                MessageBox.Show("El Campo No debe estar Vacío");
+                Despcripciontextblock.Focus();
+
+            }
             else
             {
                 foreach (var carater in Despcripciontextblock.Text)
                 {
-                    if (!char.IsLetter(carater))
+                    if (!char.IsLetter(carater)&& !char.IsWhiteSpace(carater)&& !char.IsDigit(carater))
+                    {
                         paso = false;
+                        MessageBox.Show("No debe de Contener Caracteres Expeciales");
+                        Despcripciontextblock.Focus();
+                    }
                 }
 
             }

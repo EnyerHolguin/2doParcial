@@ -91,7 +91,7 @@
         </StackPanel>
 
         <StackPanel Grid.Row="6" Grid.Column="0" Margin="0,0,5,0">
-            <Label Content="Solicuion" FontSize="15"/>
+            <Label Content="Solucion" FontSize="15"/>
         </StackPanel>
 
         <StackPanel Grid.Row="3" Grid.Column="1" Margin="0,0,5,0">
@@ -111,7 +111,7 @@
         <StackPanel Grid.Row="5" Grid.Column="1" Margin="0,0,5,0">
             <TextBox x:Name="Problemtextblock" Height="30" Background="#FFF9F3F3">
                 <TextBox.Text>
-                    <Binding Path="Problema" UpdateSourceTrigger="PropertyChanged" Mode="TwoWay">
+                    <Binding Path="llamadasDetalles.Problema" UpdateSourceTrigger="PropertyChanged" Mode="TwoWay">
                         
                     </Binding>
                 </TextBox.Text>
@@ -121,7 +121,7 @@
         <StackPanel Grid.Row="6" Grid.Column="1" Margin="0,0,5,0">
             <TextBox x:Name="Soluciotextblock" Height="30" Background="#FFF7F5F5">
                 <TextBox.Text>
-                    <Binding Path="Solucion" UpdateSourceTrigger="PropertyChanged" Mode="TwoWay">
+                    <Binding Path="llamadasDetalles.Solucion" UpdateSourceTrigger="PropertyChanged" Mode="TwoWay">
                     </Binding>
                 </TextBox.Text>
             </TextBox>
@@ -130,21 +130,12 @@
         <StackPanel Grid.Row="7" Grid.Column="1" Margin="5,5,12,0">
             <DataGrid x:Name="LlamadaGrid" Height="202">
                 <DataGrid.ItemsSource>
-                    <Binding Path="LlamadasDetalle"  Mode="TwoWay">
+                    <Binding Path="llamada.LlamadasDetalles"  Mode="TwoWay">
                     </Binding>
                 </DataGrid.ItemsSource>
             </DataGrid>
         </StackPanel>
-
-
-
-
-
-
-
-
-
-
+        
     </Grid>
 
 
