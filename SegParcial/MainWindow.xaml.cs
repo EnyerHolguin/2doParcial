@@ -36,12 +36,12 @@ namespace SegParcial
         }
         private void Limpiar()
         {
-            /* LlamadaIdtextblock.Text = "0";
+             LlamadaIdtextblock.Text = "0";
              Despcripciontextblock.Text = string.Empty;
              Problemtextblock.Text = string.Empty;
-             Soluciotextblock.Text = string.Empty;j*/
-            llamada = new Llamadas();
-            LlamadaGrid.ItemsSource = new List<LlamadasDetalles>();
+             Soluciotextblock.Text = string.Empty;
+             llamada = new Llamadas();
+             llamada.Telefono = new List<LlamadasDetalles>();
             reCargar();
 
         }
@@ -193,7 +193,7 @@ namespace SegParcial
         }
        private void AgregaButton_Click(object sender, RoutedEventArgs e)
         {
-            var listado = new List<LlamadasDetalles>();
+            
             if (ValidarAgregar())
                 return;
 
@@ -211,8 +211,7 @@ namespace SegParcial
             Soluciotextblock.Clear();
             Problemtextblock.Focus();
 
-            LlamadaGrid.ItemsSource= null;
-            LlamadaGrid.ItemsSource = listado;
+            
         }
 
         private void NuevobButton_Click(object sender, RoutedEventArgs e)

@@ -25,9 +25,9 @@ namespace SegParcial.Migrations
                 {
                     IdDetalle = table.Column<int>(nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
+                    Llamadaid = table.Column<int>(nullable: false),
                     Problema = table.Column<string>(nullable: true),
-                    Solucion = table.Column<string>(nullable: true),
-                    Llamadaid = table.Column<int>(nullable: true)
+                    Solucion = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -37,7 +37,7 @@ namespace SegParcial.Migrations
                         column: x => x.Llamadaid,
                         principalTable: "Llamadas",
                         principalColumn: "Llamadaid",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(
